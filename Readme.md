@@ -1,7 +1,9 @@
 ElevenNote in Django 
 ====================
 
-Requirements Django 1.8.1
+Uses:
+* Django 1.8.1
+* Python 3.4
 
 Chapter 01
 ----------
@@ -9,7 +11,7 @@ Chapter 01
 Make the project:
 
 ```
->>> django-admin startproject elevennote
+$ django-admin startproject elevennote
 ```
 
 Create some initial tables:
