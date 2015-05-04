@@ -12,4 +12,9 @@ def index(request):
     return render(request, 'note/index.html', context)
 
 def detail(request, note_id):
-    return HttpResponse("You're looking at note %s." % note_id)
+    try:
+        note = Note.objects.get(pk=note_id)
+    except Note.DoesNotExist:
+        raise Http404("Note does not exist")
+
+    return render(request, 'note/detail.html', {'note': note})
