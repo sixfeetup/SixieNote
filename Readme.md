@@ -26,3 +26,13 @@ $ python manage.py runserver
 
 And connect at http://localhost:8000/ to verify that everything is working.
 
+Chapter 02
+----------
+
+Make your app:
+
+```
+$ python manage.py startapp note
+```
+
+
