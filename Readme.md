@@ -54,3 +54,10 @@ $  ./manage.py migrate
 ```
 
 You can now view this in the admin.
+
+
+Chapter 03
+----------
+
+Modify the `note/admin.py` file and see how the admin can be customized.
+
