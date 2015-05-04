@@ -26,6 +26,16 @@ $ python manage.py runserver
 
 And connect at http://localhost:8000/ to verify that everything is working.
 
+Create a superuser:
+```
+$ python manage.py createsuperuser
+...
+$ python manage.py runserver
+```
+
+Connect to the admin at http://localhost:8000/admin
+
+
 Chapter 02
 ----------
 
@@ -34,5 +44,4 @@ Make your app:
 ```
 $ python manage.py startapp note
 ```
-
 
