@@ -1,1 +1,5 @@
 Django 1.8.1
+
+# Make the project
+$ django-admin startproject elevennote
+
