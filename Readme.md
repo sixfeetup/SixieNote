@@ -18,3 +18,11 @@ Create some initial tables:
 ```
 $ python manage.py migrate
 ```
+
+Run the server:
+```
+$ python manage.py runserver
+```
+
+And connect at http://localhost:8000/ to verify that everything is working.
+
