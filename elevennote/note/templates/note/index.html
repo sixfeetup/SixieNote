@@ -1,0 +1,9 @@
+{% if latest_note_list %}
+    <ul>
+    {% for note in latest_note_list %}
+        <li><a href="/notes/{{ note.id }}/">{{ note.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No notes are available.</p>
+{% endif %}
