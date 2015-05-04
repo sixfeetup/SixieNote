@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 
 from .models import Note
@@ -12,9 +12,5 @@ def index(request):
     return render(request, 'note/index.html', context)
 
 def detail(request, note_id):
-    try:
-        note = Note.objects.get(pk=note_id)
-    except Note.DoesNotExist:
-        raise Http404("Note does not exist")
-
+    note = get_object_or_404(Note, pk=note_id)
     return render(request, 'note/detail.html', {'note': note})
