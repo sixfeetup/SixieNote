@@ -34,3 +34,23 @@ $ python manage.py runserver
 ```
 
 Connect to the admin at http://localhost:8000/admin
+
+
+Chapter 02
+----------
+
+Make your app:
+
+```
+$ python manage.py startapp note
+```
+
+Modify models.py and admin.py to contain your first model.
+
+Apply changes to DB:
+```
+$ ./manage.py makemigrations note
+$  ./manage.py migrate
+```
+
+You can now view this in the admin.
