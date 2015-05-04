@@ -65,4 +65,6 @@ Modify the `note/admin.py` file and see how the admin can be customized.
 Chapter 04
 ----------
 
-Modify `note/urls.py`, `note/views.py`, and `elevennote/settings.py` to create your first views.
+Modify `note/urls.py`, `note/views.py`, and `elevennote/settings.py` to 
+and create templates in the `note/templates/note/...` directory to create
+your first views.
