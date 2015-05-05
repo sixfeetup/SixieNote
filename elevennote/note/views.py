@@ -1,5 +1,3 @@
-import django_wysiwyg
-
 from django.views.generic import ListView, DetailView, CreateView
 from django.utils import timezone
 from django.core.urlresolvers import reverse_lazy
