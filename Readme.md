@@ -50,13 +50,13 @@ Modify models.py and admin.py to contain your first model.
 Apply changes to DB:
 ```
 $ ./manage.py makemigrations note
-$  ./manage.py migrate
+$ ./manage.py migrate
 ```
 
 You can now view this in the admin.
 
 
-Chapter 03 - customize the admin
+Chapter 03 - Customize the admin
 ----------
 
 Modify the `note/admin.py` file and see how the admin can be customized.
@@ -83,3 +83,17 @@ Chapter 06 - Better templates and new users
 -----------------------------
 
 Copy in templates and add in urls for creating new users.
+
+
+Chapter 07 - Associating notes with owners
+-------------------------
+
+Add an `owner` field to the model.  You'll need to run migrations.  You can use
+a default value of 0 for the migration.
+
+```
+$ ./manage.py makemigrations note
+$ ./manage.py migrate
+```
+
+Then, restrict the view on the index page so that a user can only see their own notes.
