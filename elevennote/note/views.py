@@ -14,7 +14,7 @@ class NoteList(LoginRequiredMixin, ListView):
     context_object_name = 'latest_note_list'
 
     def get_queryset(self):
-        return Note.objects.filter(owner=self.request.user)
+        return Note.objects.filter(owner=self.request.user).order_by('-pub_date')
 
 
 class NoteDetail(LoginRequiredMixin, DetailView):
