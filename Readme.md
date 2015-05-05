@@ -19,11 +19,6 @@ Create some initial tables:
 $ python manage.py migrate
 ```
 
-Install Redactor (visual editor):
-```
-$ pip install django-wysiwyg-redactor
-```
-
 Run the server:
 ```
 $ python manage.py runserver

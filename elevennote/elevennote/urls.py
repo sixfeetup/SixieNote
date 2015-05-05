@@ -42,7 +42,4 @@ urlpatterns = [
 
     # Our app
     url(r'^notes/', include('note.urls', namespace="note")),
-    
-    # WYSIWYG
-    url(r'^redactor/', include('redactor.urls')),
 ]
