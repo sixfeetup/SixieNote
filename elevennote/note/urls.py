@@ -1,8 +1,8 @@
 from django.conf.urls import url
 
-from . import views
+from .views import NoteList, NoteDetail
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^(?P<note_id>[0-9]+)/$', views.detail, name='detail'),
+    url(r'^$', NoteList.as_view(), name='index'),
+    url(r'^(?P<pk>[0-9]+)/$', NoteDetail.as_view(), name='detail'),
 ]

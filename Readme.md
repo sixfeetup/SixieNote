@@ -97,3 +97,10 @@ $ ./manage.py migrate
 ```
 
 Then, restrict the view on the index page so that a user can only see their own notes.
+
+
+Chapter 08 - Switch to CBVs
+-------------------
+
+Class-based views can significantly reduce code.  Switch our two function-based views
+to class-based views before we begin adding more views.
