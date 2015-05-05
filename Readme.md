@@ -146,3 +146,12 @@ $ pip install django-wysiwyg==0.7.0
 ```
 
 Diff between chapter 11 and 12 to see settings and template changes necessary.
+
+
+Chapter 13 - Secure notes
+-------------------
+
+Currently anyone who is logged in can read any note (by modifying the URL).
+Override the `get()` method to issue a 403 Forbidden if a user is trying to
+read a note they don't own.
+
