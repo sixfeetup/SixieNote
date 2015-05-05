@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView
 from django.utils import timezone
 from django.core.urlresolvers import reverse_lazy
+from django.core.exceptions import PermissionDenied
 
 from .models import Note
 from .mixins import LoginRequiredMixin
@@ -23,6 +24,15 @@ class NoteDetail(LoginRequiredMixin, DetailView):
     model = Note
     template_name = 'note/detail.html'
     context_object_name = 'note'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        if self.object.owner != self.request.user:
+            raise PermissionDenied
+
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
 
 
 class NoteCreate(LoginRequiredMixin, CreateView):
