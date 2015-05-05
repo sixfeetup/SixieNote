@@ -68,3 +68,12 @@ Chapter 04
 Modify `note/urls.py`, `note/views.py`, and `elevennote/settings.py` to 
 and create templates in the `note/templates/note/...` directory to create
 your first views.
+
+
+Chapter 05 - Authentcation
+--------------------------
+
+Add URLs and templates for the authentication system.  Make the existing
+views use the `@login_required` decorator.
+
+(Also, add in a redirect for the root URL)
