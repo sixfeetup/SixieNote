@@ -77,3 +77,9 @@ Add URLs and templates for the authentication system.  Make the existing
 views use the `@login_required` decorator.
 
 (Also, add in a redirect for the root URL)
+
+
+Chapter 06 - Better templates and new users
+-----------------------------
+
+Copy in templates and add in urls for creating new users.

@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 {% if latest_note_list %}
     <ul>
     {% for note in latest_note_list %}
@@ -7,3 +10,5 @@
 {% else %}
     <p>No notes are available.</p>
 {% endif %}
+
+{% endblock %}
