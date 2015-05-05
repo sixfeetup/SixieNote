@@ -3,9 +3,11 @@
 {% block content %}
 
 {% if form.errors %}
-<div class="alert alert-danger" role="alert">
-  Your username and password didn't match. Please try again.
-</div>
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
 {% endif %}
 
 <form action="{% url 'login' %}" method="post" accept-charset="utf-8">
@@ -13,7 +15,9 @@
     {% for field in form %}
         <label>{{ field.label }}</label>
         {% if field.errors %}
+	<div class="alert alert-danger" role="alert">
             {{ field.errors }}
+	</div>
         {% endif %}
         {{ field }}
     {% endfor %}
