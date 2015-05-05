@@ -5,7 +5,7 @@ Uses:
 * Django 1.8.1
 * Python 3.4
 
-Chapter 01
+Chapter 01 - Create the project
 ----------
 
 Make the project:
@@ -36,7 +36,7 @@ $ python manage.py runserver
 Connect to the admin at http://localhost:8000/admin
 
 
-Chapter 02
+Chapter 02 - Create a new app
 ----------
 
 Make your app:
@@ -56,13 +56,13 @@ $  ./manage.py migrate
 You can now view this in the admin.
 
 
-Chapter 03
+Chapter 03 - customize the admin
 ----------
 
 Modify the `note/admin.py` file and see how the admin can be customized.
 
 
-Chapter 04
+Chapter 04 - Make the first views
 ----------
 
 Modify `note/urls.py`, `note/views.py`, and `elevennote/settings.py` to 
@@ -70,7 +70,7 @@ and create templates in the `note/templates/note/...` directory to create
 your first views.
 
 
-Chapter 05 - Authentcation
+Chapter 05 - Authentication
 --------------------------
 
 Add URLs and templates for the authentication system.  Make the existing
