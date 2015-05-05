@@ -7,6 +7,30 @@
 
 {% block content %}
 
+<div class="container-fluid">
+
+<div class="col-md-3 pull-left">
+
+  <div class="row new-note">
+    <button href="{% url 'note:create' %}" class="btn btn-primary">Create a new note</button>
+    <br>&nbsp;
+  </div>
+
+  <div class="row notes">
+    {% if notes %}
+      {% for note in notes %}
+        <a href="{% url 'note:update' note.id %}">{{ note.title }}</a><br />
+        {{ note.body | safe }}
+	<hr />
+      {% endfor %}
+    {% else %}
+      <p>No notes are available.</p>
+    {% endif %}
+  </div>
+</div>
+
+<div class="col-md-9">
+
 {% if form.errors %}
     {% for error in form.non_field_errors %}
         <div class="alert alert-danger" role="alert">
@@ -34,8 +58,17 @@
     </p>
     {% endfor %}
     <input type="hidden" name="next" value="{{ next }}" />
-    <input class="button small" type="submit" value="Submit"/>
+
+{% if object %}
+    <input class="button small" type="submit" value="Update Note"/>
+{% else %}
+    <input class="button small" type="submit" value="Create Note"/>
+{% endif %}
 </form>
+
+</div>
+
+</div>
 
 {% wysiwyg_editor "id_body" %}
 

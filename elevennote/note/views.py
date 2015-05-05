@@ -1,37 +1,14 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView
 from django.utils import timezone
 from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import PermissionDenied
 
 from .models import Note
-from .mixins import LoginRequiredMixin
+from .mixins import LoginRequiredMixin, NoteMixin
 from .forms import NoteForm
 
-class NoteList(LoginRequiredMixin, ListView):
-    paginate_by = 5
-    template_name = 'note/index.html'
-    context_object_name = 'latest_note_list'
 
-    def get_queryset(self):
-        return Note.objects.filter(owner=self.request.user).order_by('-pub_date')
-
-
-class NoteDetail(LoginRequiredMixin, DetailView):
-    model = Note
-    template_name = 'note/detail.html'
-    context_object_name = 'note'
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-
-        if self.object.owner != self.request.user:
-            raise PermissionDenied
-
-        context = self.get_context_data(object=self.object)
-        return self.render_to_response(context)
-
-
-class NoteCreate(LoginRequiredMixin, CreateView):
+class NoteCreate(LoginRequiredMixin, NoteMixin, CreateView):
     form_class = NoteForm
     template_name = 'note/form.html'
     success_url = reverse_lazy('note:index')
@@ -42,7 +19,7 @@ class NoteCreate(LoginRequiredMixin, CreateView):
         return super(NoteCreate, self).form_valid(form)
 
 
-class NoteUpdate(LoginRequiredMixin, UpdateView):
+class NoteUpdate(LoginRequiredMixin, NoteMixin, UpdateView):
     model = Note
     form_class = NoteForm
     template_name = 'note/form.html'
