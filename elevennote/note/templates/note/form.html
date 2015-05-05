@@ -15,7 +15,12 @@
     {% endfor %}
 {% endif %}
 
+{% if object %}
+<form action="{% url 'note:update' object.pk %}" method="post" accept-charset="utf-8">
+{% else %}
 <form action="{% url 'note:create' %}" method="post" accept-charset="utf-8">
+{% endif %}
+
     {% csrf_token %}
     {% for field in form %}
     <p>
