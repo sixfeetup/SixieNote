@@ -169,3 +169,12 @@ Chapter 15 - Begin improving UI
 Begin improving	the UI by displaying the full note on the index	page.
 Remove the edit	button.	 Instead, clicking on the name takes you to edit
 the note.  (The	details	page isn't really needed any more)
+
+
+Chapter 16 - Further improving UI
+----------------------
+
+Separate the index page into two columns.  The list of notes and a form
+to view/edit a note.
+
+This involves creating a custom view.

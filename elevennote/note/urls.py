@@ -1,10 +1,10 @@
 from django.conf.urls import url
+from django.http import HttpResponseRedirect
 
-from .views import NoteList, NoteDetail, NoteCreate, NoteUpdate
+from .views import NoteCreate, NoteUpdate
 
 urlpatterns = [
-    url(r'^$', NoteList.as_view(), name='index'),
-    url(r'^(?P<pk>[0-9]+)/$', NoteDetail.as_view(), name='detail'),
-    url(r'^(?P<pk>[0-9]+)/edit/$', NoteUpdate.as_view(), name='update'),
+    url(r'^$', lambda r: HttpResponseRedirect('new/'), name='index'),
+    url(r'^(?P<pk>[0-9]+)/$', NoteUpdate.as_view(), name='update'),
     url(r'^new/$', NoteCreate.as_view(), name='create'),
 ]
