@@ -16,13 +16,19 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-
+from django.http import HttpResponseRedirect
 
 urlpatterns = [
+    # Handle the root url.
+    url(r'^$', lambda r: HttpResponseRedirect('notes/')),
+
+    # Admin
     url(r'^admin/', include(admin.site.urls)),
 
+    # Registration
     url(r'^accounts/login/$', auth_views.login, name='login'),
     url(r'^accounts/logout/$', auth_views.logout),
 
+    # Our app
     url(r'^notes/', include('note.urls', namespace="note")),
 ]
