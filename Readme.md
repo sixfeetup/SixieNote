@@ -161,3 +161,11 @@ Chapter 14 - Editing existing notes
 
 Add the ability to edit existing notes, as well as a link from the index page
 to the edit page.
+
+
+Chapter 15 - Begin improving UI
+----------------------
+
+Begin improving	the UI by displaying the full note on the index	page.
+Remove the edit	button.	 Instead, clicking on the name takes you to edit
+the note.  (The	details	page isn't really needed any more)
