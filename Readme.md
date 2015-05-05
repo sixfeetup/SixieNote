@@ -114,3 +114,12 @@ to easily share code among multiple classes.
 
 We will start by sharing the `login_required` requirement among both our classes, and
 re-use this mixin in future classes we create.
+
+
+Chapter 10 - Creating a form for new notes
+-----------------------
+
+Currently notes can only be created in the admin.  Add a new CBV (class-based view)
+that allows note creation.
+
+This also includes a new concept, forms.
