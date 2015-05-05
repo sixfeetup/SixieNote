@@ -7,8 +7,6 @@ from .models import Note
 
 @login_required
 def index(request):
-    print(request.user.is_authenticated())
-    print(request.user)
     latest_note_list = Note.objects.order_by('-pub_date')[:5]
     context = {
         'latest_note_list': latest_note_list,
