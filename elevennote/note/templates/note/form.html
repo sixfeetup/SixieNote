@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block extra_head %}
+{% load wysiwyg %}
+{% wysiwyg_setup %}
+{% endblock %}
+
 {% block content %}
 
 {% if form.errors %}
@@ -26,5 +31,7 @@
     <input type="hidden" name="next" value="{{ next }}" />
     <input class="button small" type="submit" value="Submit"/>
 </form>
+
+{% wysiwyg_editor "id_body" %}
 
 {% endblock %}
