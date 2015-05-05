@@ -10,15 +10,13 @@
     {% endfor %}
 {% endif %}
 
-<form action="{% url 'login' %}" method="post" accept-charset="utf-8">
+<form action="{% url 'register' %}" method="post" accept-charset="utf-8">
     {% csrf_token %}
     {% for field in form %}
     <p>
         <label>{{ field.label }}</label>
         {% if field.errors %}
-	<div class="alert alert-danger" role="alert">
             {{ field.errors }}
-	</div>
         {% endif %}
         {{ field }}
     </p>
@@ -27,6 +25,6 @@
     <input class="button small" type="submit" value="Submit"/>
 </form>
 
-<a href="{% url 'register' %}">Create a new user</a>
+Already have a user? <a href="{% url 'login' %}">Sign in</a>
 
 {% endblock %}
