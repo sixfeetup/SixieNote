@@ -1,20 +1,28 @@
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView
 
 from .models import Note
 
 
-@login_required
-def index(request):
-    latest_note_list = Note.objects.filter(owner=request.user).order_by('-pub_date')[:5]
-    context = {
-        'latest_note_list': latest_note_list,
-    }
-    return render(request, 'note/index.html', context)
+class NoteList(ListView):
+    paginate_by = 5
+    template_name = 'note/index.html'
+    context_object_name = 'latest_note_list'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(NoteList, self).dispatch(*args, **kwargs)
+
+    def get_queryset(self):
+        return Note.objects.filter(owner=self.request.user)
 
 
-@login_required
-def detail(request, note_id):
-    note = get_object_or_404(Note, pk=note_id)
-    return render(request, 'note/detail.html', {'note': note})
+class NoteDetail(DetailView):
+    model = Note
+    template_name = 'note/detail.html'
+    context_object_name = 'note'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(NoteDetail, self).dispatch(*args, **kwargs)
