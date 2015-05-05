@@ -131,3 +131,18 @@ Chapter 11 - Pagination
 If more than 5 forms are created then all the forms will not be displayed.  Add
 pagination, and also make sure to sort the forms that we display by the date
 they are published (in reverse order).
+
+
+Chapter 12 - WYSIWYG
+--------------------
+
+Add in a more advanced editor.  A WYSIWYG (What You See Is What You Get) editor
+will allow the text to be formatted.
+
+Steps:
+
+```
+$ pip install django-wysiwyg==0.7.0
+```
+
+Diff between chapter 11 and 12 to see settings and template changes necessary.
