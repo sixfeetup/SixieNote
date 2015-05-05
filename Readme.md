@@ -104,3 +104,13 @@ Chapter 08 - Switch to CBVs
 
 Class-based views can significantly reduce code.  Switch our two function-based views
 to class-based views before we begin adding more views.
+
+
+Chapter 09 - Intro to mixins
+---------------------
+
+If your classes have shared code you can put them into a "mixin".  This will allow you
+to easily share code among multiple classes.
+
+We will start by sharing the `login_required` requirement among both our classes, and
+re-use this mixin in future classes we create.
