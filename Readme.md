@@ -174,7 +174,9 @@ the note.  (The	details	page isn't really needed any more)
 Chapter 16 - Further improving UI
 ----------------------
 
-Separate the index page into two columns.  The list of notes and a form
-to view/edit a note.
+Separate the form page into two columns.  The list of notes and a form
+to create/edit a note.
 
-This involves creating a custom view.
+We will do away with the index and detail views as they are no longer
+used.
+
