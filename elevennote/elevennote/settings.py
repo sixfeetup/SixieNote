@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'note',
+    'django_wysiwyg',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,3 +109,6 @@ STATICFILES_DIRS = (
 
 # On successful login, redirect to this URL
 LOGIN_REDIRECT_URL = '/'
+
+# WYSIWYG settings
+DJANGO_WYSIWYG_FLAVOR = "ckeditor"

@@ -4,6 +4,10 @@
 
 <h1>{{ note.title }}</h1>
 
+{% autoescape off %}
+{% comment %} THIS IS NOT SECURE! {% endcomment %}
 <p>{{ note.body }}</p>
+
+{% endautoescape %}
 
 {% endblock %}
