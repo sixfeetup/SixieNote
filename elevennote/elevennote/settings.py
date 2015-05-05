@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'note',
+    'redactor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,3 +109,7 @@ STATICFILES_DIRS = (
 
 # On successful login, redirect to this URL
 LOGIN_REDIRECT_URL = '/'
+
+# WYSIWYG Settings
+REDACTOR_OPTIONS = {'lang': 'en'}
+REDACTOR_UPLOAD = 'uploads/'
