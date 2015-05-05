@@ -31,7 +31,6 @@ class NoteCreate(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('note:index')
 
     def form_valid(self, form):
-        print(form)
         form.instance.owner = self.request.user
         form.instance.pub_date = timezone.now()
         return super(NoteCreate, self).form_valid(form)
