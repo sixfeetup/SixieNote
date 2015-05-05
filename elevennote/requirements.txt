@@ -1,1 +1,2 @@
 Django==1.8.1
+django-wysiwyg-redactor==0.4.7
