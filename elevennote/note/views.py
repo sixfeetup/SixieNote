@@ -7,7 +7,7 @@ from .models import Note
 
 @login_required
 def index(request):
-    latest_note_list = Note.objects.order_by('-pub_date')[:5]
+    latest_note_list = Note.objects.filter(owner=request.user).order_by('-pub_date')[:5]
     context = {
         'latest_note_list': latest_note_list,
     }
