@@ -123,3 +123,11 @@ Currently notes can only be created in the admin.  Add a new CBV (class-based vi
 that allows note creation.
 
 This also includes a new concept, forms.
+
+
+Chapter 11 - Pagination
+----------------------
+
+If more than 5 forms are created then all the forms will not be displayed.  Add
+pagination, and also make sure to sort the forms that we display by the date
+they are published (in reverse order).
