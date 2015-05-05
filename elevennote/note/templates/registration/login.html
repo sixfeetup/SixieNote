@@ -1,3 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+  Your username and password didn't match. Please try again.
+</div>
+{% endif %}
+
 <form action="{% url 'login' %}" method="post" accept-charset="utf-8">
     {% csrf_token %}
     {% for field in form %}
@@ -10,3 +20,5 @@
     <input type="hidden" name="next" value="{{ next }}" />
     <input class="button small" type="submit" value="Submit"/>
 </form>
+
+{% endblock %}

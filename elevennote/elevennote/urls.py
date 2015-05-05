@@ -27,7 +27,7 @@ urlpatterns = [
 
     # Registration
     url(r'^accounts/login/$', auth_views.login, name='login'),
-    url(r'^accounts/logout/$', auth_views.logout),
+    url(r'^accounts/logout/$', auth_views.logout, name='logout'),
 
     # Our app
     url(r'^notes/', include('note.urls', namespace="note")),
