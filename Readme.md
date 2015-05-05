@@ -155,3 +155,9 @@ Currently anyone who is logged in can read any note (by modifying the URL).
 Override the `get()` method to issue a 403 Forbidden if a user is trying to
 read a note they don't own.
 
+
+Chapter 14 - Editing existing notes
+-------------------
+
+Add the ability to edit existing notes, as well as a link from the index page
+to the edit page.

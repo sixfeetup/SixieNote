@@ -4,7 +4,7 @@
 {% if latest_note_list %}
     <ul>
     {% for note in latest_note_list %}
-        <li><a href="{% url 'note:detail' note.id %}">{{ note.title }}</a></li>
+        <li><a href="{% url 'note:detail' note.id %}">{{ note.title }}</a> - <a href="{% url 'note:update' note.id %}">Edit</a></li>
     {% endfor %}
     </ul>
 {% else %}
