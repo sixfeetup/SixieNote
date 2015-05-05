@@ -17,6 +17,8 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse_lazy
+
 
 urlpatterns = [
     # Handle the root url.
@@ -27,7 +29,7 @@ urlpatterns = [
 
     # Registration
     url(r'^accounts/login/$', auth_views.login, name='login'),
-    url(r'^accounts/logout/$', auth_views.logout, name='logout'),
+    url(r'^accounts/logout/$', auth_views.logout, {"next_page" : reverse_lazy('login')}, name='logout'),
 
     # Our app
     url(r'^notes/', include('note.urls', namespace="note")),
