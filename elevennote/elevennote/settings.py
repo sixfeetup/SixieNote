@@ -105,3 +105,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+# On successful login, redirect to this URL
+LOGIN_REDIRECT_URL = '/'
