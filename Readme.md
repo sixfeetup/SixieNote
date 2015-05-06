@@ -61,13 +61,22 @@ Chapter 03 - Customize the admin
 
 Modify the `note/admin.py` file and see how the admin can be customized.
 
+The way that the objects are listed can be modified as well as the fields
+on the object's create/edit page.  Additionally, restrictions can be made
+here (such as not allowing object deletion via the admin).
 
 Chapter 04 - Make the first views
 ----------
 
-Modify `note/urls.py`, `note/views.py`, and `elevennote/settings.py` to 
-and create templates in the `note/templates/note/...` directory to create
-your first views.
+Views are placed into `note/views.py`.  After creating views they need to
+be added into `note/urls.py`.
+
+The top level `urls.py` file needs an entry for our app as well.
+
+Create templates in the `note/templates/note/` directory to create
+your first views.  We'll start with really basic templates and then do
+more with templating in future chapters.
+
 
 
 Chapter 05 - Authentication
