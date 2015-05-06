@@ -264,5 +264,17 @@ We'll put in a hook that makes a new API key for each new user, but to
 create keys for all the users who already exist run this command:
 
 ```
-python manage.py backfill_api_keys
+# Run migrate again because Tastypie needs to make a DB table to hold the keys
+$ python manage.py migrate
+$ python manage.py backfill_api_keys
 ```
+
+You can use your browser like so:
+http://localhost:8000/api/v1/note/?format=json&username=a&api_key=416d65381bcfb395ae7312c8028b7650b3413594
+
+or the command like like so:
+
+```
+$ curl --dump-header - -H "Authorization: ApiKey a:416d65381bcfb395ae7312c8028b7650b3413594" http://localhost:8000/api/v1/note/?format=json
+```
+
