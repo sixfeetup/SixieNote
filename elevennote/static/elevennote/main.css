@@ -1,0 +1,144 @@
+body {
+  font-family: Oxygen, Helvetica, Arial, sans-serif;
+}
+
+.container {
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.col-xs-12 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+header .well {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+header .well .user-links {
+  float: right;
+  color: #ccc;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: Merriweather;
+  font-weight: 300;
+  color: #2dbe60;
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: #2dbe60;
+}
+
+.bootsy_text_area {
+  width: 100%;
+  border-color: #ccc;
+  border: none;
+  font-size: 120%;
+}
+.bootsy_text_area:focus {
+  outline: none;
+}
+
+i.fa-trash-o {
+  color: #ccc;
+  font-size: 150%;
+  vertical-align: middle;
+  margin-left: 1em;
+}
+i.fa-trash-o:hover {
+  color: #999;
+}
+
+.wysihtml5-toolbar .btn-default {
+  color: #999;
+}
+
+input#note_title,
+#id_title {
+  border: none;
+  font-size: 200%;
+  font-family: Merriweather;
+  color: #2dbe60;
+  font-weight: 300;
+  width: 100%;
+}
+input#note_title:focus {
+  outline: none;
+}
+
+#sidebar {
+  position: absolute;
+  width: 95%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+ul#notes {
+  list-style: none;
+  margin-top: 1em;
+  padding: 0;
+  width: 100%;
+  color: #999;
+}
+ul#notes li {
+  border-top: 1px solid #ddd;
+  padding: 1em;
+  height: 100px;
+  font-size: 90%;
+  cursor: pointer;
+  overflow: hidden;
+}
+ul#notes li:first-of-type {
+  border-top: none;
+}
+ul#notes li:hover {
+  color: white;
+  background-color: #2dbe60;
+}
+ul#notes li:hover .note-title {
+  color: white;
+}
+ul#notes li .note-title {
+  color: black;
+  font-family: Merriweather;
+  font-size: 120%;
+  font-weight: 300;
+}
+ul#notes li .note-body {
+  height: 54px;
+  overflow: hidden;
+}
+
+#new_user input[type="text"],
+#new_user input[type="password"], .edit_user input[type="text"],
+.edit_user input[type="password"] {
+  width: 300px;
+  font-size: 120%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 0.25em;
+}
+
+#welcome h1 {
+  color: #2dbe60;
+}
+#welcome main {
+  margin: 0 auto;
+  width: 360px;
+}
+
+span.login {
+  margin-left: 1em;
+}
+
+.new-note a {
+    color: #333333;
+}
