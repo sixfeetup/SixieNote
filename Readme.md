@@ -252,3 +252,17 @@ their own notes.
 This users Django authentication and a custom authorization model.
 
 http://localhost:8000/api/v1/note/?format=json&owner__username=[NOT YOU!]
+
+
+Chapter 21 - API - authentication with a token
+--------------------
+
+Configure Tastypie to use API keys.  Add in a profile to display the user's
+API key to them.
+
+We'll put in a hook that makes a new API key for each new user, but to
+create keys for all the users who already exist run this command:
+
+```
+python manage.py backfill_api_keys
+```
