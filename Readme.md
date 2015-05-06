@@ -269,7 +269,11 @@ $ python manage.py migrate
 $ python manage.py backfill_api_keys
 ```
 
-You can use your browser like so:
+In order to view your API key make use of the profile link in the top right.  Create
+a new view using TemplateView and fetch the `api_key` in the `get_context_data` and
+pass it to the template to display.
+
+Once you know your API key you can use your browser like so:
 http://localhost:8000/api/v1/note/?format=json&username=a&api_key=416d65381bcfb395ae7312c8028b7650b3413594
 
 or the command like like so:
