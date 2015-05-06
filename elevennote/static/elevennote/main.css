@@ -37,6 +37,10 @@ a:link, a:visited, a:hover, a:active {
   color: #2dbe60;
 }
 
+dd {
+    padding: 10px 0;
+}
+
 .bootsy_text_area {
   width: 100%;
   border-color: #ccc;

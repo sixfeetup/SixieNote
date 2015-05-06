@@ -1,7 +1,9 @@
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, TemplateView
 from django.utils import timezone
 from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import PermissionDenied
+
+from tastypie.models import ApiKey
 
 from .models import Note
 from .mixins import LoginRequiredMixin, NoteMixin
@@ -45,3 +47,20 @@ class NoteUpdate(LoginRequiredMixin, NoteMixin, UpdateView):
 
         return super(NoteUpdate, self).post(request, *args, **kwargs)
 
+
+class ProfileView(NoteMixin, TemplateView):
+    template_name = 'note/profile.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        
+        try:
+            api_key_obj = ApiKey.objects.get(user=self.request.user)
+            api_key = api_key_obj.key
+        except ApiKey.DoesNotExist:
+            api_key = None
+
+        context.update({
+            'api_key': api_key
+        })
+        return context
