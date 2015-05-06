@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+{% load wysiwyg %}
+{% wysiwyg_setup %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+
+        <div class="col-xs-4">
+            <nav id="sidebar">
+
+              <div class="new-note">
+                <a href="{% url 'note:create' %}" class="new-note btn btn-default">+ New Note</a>
+              </div>
+
+              <ul id="notes">
+              {% if notes %}
+                  {% for note in notes %}
+                    <li data-url="{% url 'note:update' note.id %}">
+                        <div class="note-title">{{ note.title }}</div>
+                        <div class="note-body">{{ note.body | safe }}</div>
+                    </li>
+                  {% endfor %}
+                {% else %}
+                  <li>No notes are available.</li>
+              {% endif %}
+              </ul>
+            </nav>
+        </div>
+
+        <div class="col-xs-8">
+
+	  API Key: {{ api_key }}
+        </div>
+    </div>
+
+{% wysiwyg_editor "id_body" %}
+
+{% endblock %}
