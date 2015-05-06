@@ -28,3 +28,20 @@ class NoteUpdate(LoginRequiredMixin, NoteMixin, UpdateView):
     def form_valid(self, form):
         form.instance.pub_date = timezone.now()
         return super(NoteUpdate, self).form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        if self.object.owner != self.request.user:
+            raise PermissionDenied
+
+        return super(NoteUpdate, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        if self.object.owner != self.request.user:
+            raise PermissionDenied
+
+        return super(NoteUpdate, self).post(request, *args, **kwargs)
+
