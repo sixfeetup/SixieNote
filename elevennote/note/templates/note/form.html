@@ -7,68 +7,68 @@
 
 {% block content %}
 
-<div class="container-fluid">
+    <div class="row">
 
-<div class="col-md-3 pull-left">
+        <div class="col-xs-4">
+            <nav id="sidebar">
 
-  <div class="row new-note">
-    <button href="{% url 'note:create' %}" class="btn btn-primary">Create a new note</button>
-    <br>&nbsp;
-  </div>
+              <div class="new-note">
+                <a href="{% url 'note:create' %}" class="new-note btn btn-default">+ New Note</a>
+              </div>
 
-  <div class="row notes">
-    {% if notes %}
-      {% for note in notes %}
-        <a href="{% url 'note:update' note.id %}">{{ note.title }}</a><br />
-        {{ note.body | safe }}
-	<hr />
-      {% endfor %}
-    {% else %}
-      <p>No notes are available.</p>
-    {% endif %}
-  </div>
-</div>
-
-<div class="col-md-9">
-
-{% if form.errors %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-danger" role="alert">
-            <strong>{{ error|escape }}</strong>
+              <ul id="notes">
+              {% if notes %}
+                  {% for note in notes %}
+                    <li data-url="{% url 'note:update' note.id %}">
+                        <div class="note-title">{{ note.title }}</div>
+                        <div class="note-body">{{ note.body | safe }}</div>
+                    </li>
+                  {% endfor %}
+                {% else %}
+                  <li>No notes are available.</li>
+              {% endif %}
+              </ul>
+            </nav>
         </div>
-    {% endfor %}
-{% endif %}
 
-{% if object %}
-<form action="{% url 'note:update' object.pk %}" method="post" accept-charset="utf-8">
-{% else %}
-<form action="{% url 'note:create' %}" method="post" accept-charset="utf-8">
-{% endif %}
+        <div class="col-xs-8">
 
-    {% csrf_token %}
-    {% for field in form %}
-    <p>
-        <label>{{ field.label }}</label>
-        {% if field.errors %}
-	<div class="alert alert-danger" role="alert">
-            {{ field.errors }}
-	</div>
+        {% if form.errors %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
         {% endif %}
-        {{ field }}
-    </p>
-    {% endfor %}
-    <input type="hidden" name="next" value="{{ next }}" />
 
-{% if object %}
-    <input class="button small" type="submit" value="Update Note"/>
-{% else %}
-    <input class="button small" type="submit" value="Create Note"/>
-{% endif %}
-</form>
+        {% if object %}
+        <form action="{% url 'note:update' object.pk %}" method="post" accept-charset="utf-8">
+        {% else %}
+        <form action="{% url 'note:create' %}" method="post" accept-charset="utf-8">
+        {% endif %}
 
-</div>
+            {% csrf_token %}
+            {% for field in form %}
+            <p>
+                {% if field.errors %}
+            	<div class="alert alert-danger" role="alert">
+                    {{ field.errors }}
+            	</div>
+                {% endif %}
+                {{ field }}
+            </p>
+            {% endfor %}
+            <input type="hidden" name="next" value="{{ next }}" />
 
-</div>
+        {% if object %}
+            <input class="btn btn-default" type="submit" value="Update Note"/>
+        {% else %}
+            <input class="btn btn-default" type="submit" value="Create Note"/>
+        {% endif %}
+        </form>
+
+        </div>
+    </div>
 
 {% wysiwyg_editor "id_body" %}
 
