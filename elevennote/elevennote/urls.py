@@ -23,9 +23,10 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 
 from tastypie.api import Api
-from note.api.resources import NoteResource
+from note.api.resources import UserResource, NoteResource
 
 v1_api = Api(api_name='v1')
+v1_api.register(UserResource())
 v1_api.register(NoteResource())
 
 urlpatterns = [
