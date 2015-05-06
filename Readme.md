@@ -128,9 +128,10 @@ This also includes a new concept, forms.
 Chapter 11 - Pagination
 ----------------------
 
-If more than 5 forms are created then all the forms will not be displayed.  Add
-pagination, and also make sure to sort the forms that we display by the date
-they are published (in reverse order).
+If more than 5 forms are created then all the forms will not be displayed because
+we have pagination enabled in the view.  But our template does not currently
+support pagination.  Add pagination into the template, and also make sure to sort
+the forms that we display by the date they are published (in reverse order).
 
 
 Chapter 12 - WYSIWYG
@@ -145,7 +146,9 @@ Steps:
 $ pip install django-wysiwyg==0.7.0
 ```
 
-Diff between chapter 11 and 12 to see settings and template changes necessary.
+Diff between chapter 11 and 12 to see settings and template changes necessary,
+as well as the CKEditor downloaded from here:
+http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.4.7/ckeditor_4.4.7_basic.zip
 
 
 Chapter 13 - Secure notes
@@ -187,7 +190,7 @@ Chapter 17 - Building an API
 Build a JSON endpoint to return the list of notes for a user.
 
 Note: this code is not merged back to `master` because we will replace
-this API with Tastypie in the next chapter.
+this API with a better one built using Tastypie in the next chapter.
 
 
 Chapter 18 - Building an API w/ Tastypie
@@ -208,7 +211,8 @@ http://localhost:8000/api/v1/note/?format=json
 
 Note: in order to make the API more interesting we have loosened the restriction
 here that prevents seeing other users posts.  (For that matter, our API is wide
-open.  Anyone can access the data, even people who are not authenticated)
+open.  Anyone can access the data, even people who are not authenticated.  We
+will get to that later.)
 
 
 Chapter 19 - Adding users and filters to the API
