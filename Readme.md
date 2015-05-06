@@ -202,3 +202,14 @@ pip install -e git+https://github.com/django-tastypie/django-tastypie#egg=TastyP
 
 Tastypie offers an easy way to build an API:
 https://django-tastypie.readthedocs.org/en/latest/
+
+
+Chapter 19 - Adding users and filters to the API
+------------------
+
+We can add in filtering of the API with just a few lines of code.
+
+We'll also add in users at the same time, and then this type of
+filtering will work (swap [USERNAME] with `scot` or whatever):
+
+http://localhost:8000/api/v1/note/?format=json&owner__username=[USERNAME]
