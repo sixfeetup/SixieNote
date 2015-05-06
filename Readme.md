@@ -228,3 +228,14 @@ http://localhost:8000/api/v1/user/?format=json
 
 Note how we restricted some user fields.  We don't want to make the users
 emails (and other fields) publicly accessible.
+
+
+Chapter 20 - API - authentication and authorization
+----------------------
+
+Revisit the issue of locking down the API so that a user can only see
+their own notes.
+
+This users Django authentication and a custom authorization model.
+
+http://localhost:8000/api/v1/note/?format=json&owner__username=[NOT YOU!]
