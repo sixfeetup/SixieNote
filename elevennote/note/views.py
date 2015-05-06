@@ -1,7 +1,9 @@
 from django.views.generic import CreateView, UpdateView
+from django.views.generic.list import BaseListView
 from django.utils import timezone
 from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import PermissionDenied
+from django.http import JsonResponse
 
 from .models import Note
 from .mixins import LoginRequiredMixin, NoteMixin
@@ -44,4 +46,30 @@ class NoteUpdate(LoginRequiredMixin, NoteMixin, UpdateView):
             raise PermissionDenied
 
         return super(NoteUpdate, self).post(request, *args, **kwargs)
+
+
+class JSONListView(LoginRequiredMixin, BaseListView):
+    model = Note
+
+    def get_queryset(self):
+        return Note.objects.filter(owner=self.request.user).order_by('-pub_date'),
+
+    def get(self, request, *args, **kwargs):
+        self.object_list = self.get_queryset()
+
+        notes = []
+        for note in self.object_list[0]:
+            notes.append({
+                'title': note.title,
+                'body': note.body,
+                'pub_date': note.pub_date,
+            })
+
+        response = {
+            'user': self.request.user.username,
+            'notes': notes,
+            'count': len(notes),
+        }
+        
+        return JsonResponse(response, **kwargs)
 
