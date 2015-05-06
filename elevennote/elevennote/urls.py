@@ -22,6 +22,11 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 
+from tastypie.api import Api
+from note.api.resources import NoteResource
+
+v1_api = Api(api_name='v1')
+v1_api.register(NoteResource())
 
 urlpatterns = [
     # Handle the root url.
@@ -42,4 +47,8 @@ urlpatterns = [
 
     # Our app
     url(r'^notes/', include('note.urls', namespace="note")),
+    
+    # Our API
+    url(r'^api/', include(v1_api.urls)),
+
 ]

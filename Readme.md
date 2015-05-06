@@ -180,3 +180,25 @@ to create/edit a note.
 We will do away with the index and detail views as they are no longer
 used.
 
+
+Chapter 17 - Building an API
+-------------
+
+Build a JSON endpoint to return the list of notes for a user.
+
+Note: this code is not merged back to `master` because we will replace
+this API with Tastypie in the next chapter.
+
+
+Chapter 18 - Building an API w/ Tastypie
+-------------------
+
+The version of Tastypie that pip will find by default is not new enough for Django
+1.8, so install the latest version from Github:
+
+```
+pip install -e git+https://github.com/django-tastypie/django-tastypie#egg=TastyPie
+```
+
+Tastypie offers an easy way to build an API:
+https://django-tastypie.readthedocs.org/en/latest/
