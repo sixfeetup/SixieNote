@@ -1,7 +1,6 @@
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.utils import timezone
 from django.core.urlresolvers import reverse_lazy
-from django.core.exceptions import PermissionDenied
 
 from .models import Note
 from .mixins import LoginRequiredMixin, NoteMixin
@@ -31,17 +30,20 @@ class NoteUpdate(LoginRequiredMixin, NoteMixin, UpdateView):
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
-
-        if self.object.owner != self.request.user:
-            raise PermissionDenied
-
+        self.check_user_or_403(self.object.owner)
         return super(NoteUpdate, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-
-        if self.object.owner != self.request.user:
-            raise PermissionDenied
-
+        self.check_user_or_403(self.object.owner)
         return super(NoteUpdate, self).post(request, *args, **kwargs)
 
+
+class NoteDelete(LoginRequiredMixin, NoteMixin, DeleteView):
+    model = Note
+    success_url = reverse_lazy('note:index')
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.check_user_or_403(self.object.owner)
+        return super(NoteDelete, self).post(request, *args, **kwargs)
