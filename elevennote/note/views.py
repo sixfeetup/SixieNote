@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-from django.views.generic import CreateView, UpdateView, TemplateView
-=======
-from django.views.generic import CreateView, UpdateView, DeleteView
->>>>>>> 16a-delete-notes
+from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView
 from django.utils import timezone
 from django.core.urlresolvers import reverse_lazy
 
