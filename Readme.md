@@ -193,6 +193,14 @@ We will do away with the index and detail views as they are no longer
 used.
 
 
+Chapter 16a - Add note deletion
+-------------------
+
+There is currently no way to delete a note except in the admin.
+Add the ability to delete a note using a `DeleteView` CBV.
+Make sure to protect against users deleting notes they do not own.
+
+
 Chapter 17 - Building an API
 -------------
 
