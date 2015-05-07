@@ -67,6 +67,16 @@
         {% endif %}
         </form>
 
+	{% if object %}
+	  <form action="{% url 'note:delete' object.pk %}" method="post" id="delete-note-form">
+            {% csrf_token %}
+            <a class="btn btn-default" id="delete-note">
+	      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+	    </a>
+	  </form>
+	{% endif %}
+	    
+
         </div>
     </div>
 

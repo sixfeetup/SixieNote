@@ -9,4 +9,13 @@
     
     // set sidebar height
     $('#sidebar').css("height", window.innerHeight - 55 );
+
+    $(document).ready(function(){
+	$("#delete-note").click(function(e){
+            e.preventDefault();
+            if (window.confirm("Are you sure?")) {
+		$("#delete-note-form").submit();
+	    }
+	});
+    });
 }); })(jQuery);
