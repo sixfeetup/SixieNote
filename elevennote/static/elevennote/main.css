@@ -121,8 +121,9 @@ ul#notes li .note-body {
   overflow: hidden;
 }
 
-#new_user input[type="text"],
-#new_user input[type="password"], .edit_user input[type="text"],
+input[type="text"],
+input[type="password"],
+.edit_user input[type="text"],
 .edit_user input[type="password"] {
   width: 300px;
   font-size: 120%;
