@@ -20,8 +20,8 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
 
 from django.views.generic.edit import CreateView
-from django.contrib.auth.forms import UserCreationForm
 
+from note.auth_views import RegisterView
 
 urlpatterns = [
     # Handle the root url.
@@ -34,11 +34,7 @@ urlpatterns = [
     url(r'^accounts/login/$', auth_views.login, name='login'),
     url(r'^accounts/logout/$', auth_views.logout, {"next_page" : reverse_lazy('login')}, name='logout'),
 
-    url('^register/', CreateView.as_view(
-            template_name='registration/register.html',
-            form_class=UserCreationForm,
-            success_url='/',
-    ), name='register'),
+    url('^register/', RegisterView.as_view(), name='register'),
 
     # Our app
     url(r'^notes/', include('note.urls', namespace="note")),
