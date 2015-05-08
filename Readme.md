@@ -290,3 +290,8 @@ or the command like like so:
 $ curl --dump-header - -H "Authorization: ApiKey a:416d65381bcfb395ae7312c8028b7650b3413594" http://localhost:8000/api/v1/note/?format=json
 ```
 
+
+Chapter 22 - Changing passwords
+-------------------------
+
+On the profile page, add the ability to change the user's password.

@@ -1,6 +1,8 @@
-from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView
+from django.views.generic import CreateView, UpdateView, DeleteView, FormView
 from django.utils import timezone
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.forms import SetPasswordForm
+from django.contrib.auth import authenticate, login
 
 from tastypie.models import ApiKey
 
@@ -51,8 +53,10 @@ class NoteDelete(LoginRequiredMixin, NoteMixin, DeleteView):
         return super(NoteDelete, self).post(request, *args, **kwargs)
 
 
-class ProfileView(NoteMixin, TemplateView):
+class ProfileView(NoteMixin, FormView):
     template_name = 'note/profile.html'
+    form_class = SetPasswordForm
+    success_url = reverse_lazy('note:index')
     
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
@@ -67,3 +71,25 @@ class ProfileView(NoteMixin, TemplateView):
             'api_key': api_key
         })
         return context
+
+    def get_form_kwargs(self):
+        """ Our form requires the user. """
+
+        kwargs = super(ProfileView, self).get_form_kwargs()
+        kwargs.update({
+            'user': self.request.user,
+        })
+        
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+
+        username = self.request.user.username
+        password = self.request.POST['new_password2']
+
+        # If we don't re-authenticate with the new password the user will get logged out.
+        user = authenticate(username=username, password=password)
+        login(self.request, user)
+
+        return super(ProfileView, self).form_valid(form)
