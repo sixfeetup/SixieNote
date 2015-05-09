@@ -53,7 +53,7 @@ class NoteDelete(LoginRequiredMixin, NoteMixin, DeleteView):
         return super(NoteDelete, self).post(request, *args, **kwargs)
 
 
-class ProfileView(NoteMixin, FormView):
+class ProfileView(LoginRequiredMixin, NoteMixin, FormView):
     template_name = 'note/profile.html'
     form_class = SetPasswordForm
     success_url = reverse_lazy('note:index')
