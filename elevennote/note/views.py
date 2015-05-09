@@ -51,7 +51,7 @@ class NoteDelete(LoginRequiredMixin, NoteMixin, DeleteView):
         return super(NoteDelete, self).post(request, *args, **kwargs)
 
 
-class ProfileView(NoteMixin, TemplateView):
+class ProfileView(LoginRequiredMixin, NoteMixin, TemplateView):
     template_name = 'note/profile.html'
     
     def get_context_data(self, **kwargs):
