@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
 {% block extra_head %}
-{% load wysiwyg %}
-{% wysiwyg_setup %}
 {% endblock %}
 
 {% block content %}
@@ -42,7 +40,5 @@
             </dl>
         </div>
     </div>
-
-{% wysiwyg_editor "id_body" %}
 
 {% endblock %}
