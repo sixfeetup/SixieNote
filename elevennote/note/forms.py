@@ -1,5 +1,4 @@
 from django import forms
-from django.forms.widgets import HiddenInput
 
 from .models import Note
 
