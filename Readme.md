@@ -5,6 +5,9 @@ Uses:
 * Django 1.8.1
 * Python 3.4
 
+See the wiki (on github) for details on each chapter.  Below is just an
+overview.
+
 Chapter 01 - Create the project
 ----------
 
