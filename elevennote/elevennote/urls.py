@@ -19,8 +19,6 @@ from django.contrib.auth import views as auth_views
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
 
-from django.views.generic.edit import CreateView
-
 from note.auth_views import RegisterView
 
 urlpatterns = [
