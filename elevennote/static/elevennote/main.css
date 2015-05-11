@@ -120,6 +120,16 @@ ul#notes li .note-body {
   height: 54px;
   overflow: hidden;
 }
+ul#notes ul,
+ul#notes ol {
+    padding-left: 20px;
+}
+ul#notes ul li {
+    list-style: disc inside;
+}
+ul#notes ol li {
+    list-style: decimal inside;
+}
 
 input[type="text"],
 input[type="password"],
