@@ -134,6 +134,13 @@ ul#notes ul li {
 ul#notes ol li {
     list-style: decimal inside;
 }
+#nonotes {
+    margin-top: 1em;
+    color: black;
+    font-family: Merriweather;
+    font-size: 120%;
+    font-weight: 300;
+}
 
 input[type="text"],
 input[type="password"],
