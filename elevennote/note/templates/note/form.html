@@ -16,18 +16,18 @@
                 <a href="{% url 'note:create' %}" class="new-note btn btn-default">+ New Note</a>
               </div>
 
-              <ul id="notes">
               {% if notes %}
+              <ul id="notes">
                   {% for note in notes %}
                     <li data-url="{% url 'note:update' note.id %}">
                         <div class="note-title">{{ note.title }}</div>
                         <div class="note-body">{{ note.body | safe }}</div>
                     </li>
                   {% endfor %}
-                {% else %}
-                  <li>No notes are available.</li>
-              {% endif %}
               </ul>
+              {% else %}
+                <p id="nonotes">No notes are available.</p>
+              {% endif %}
             </nav>
         </div>
 
