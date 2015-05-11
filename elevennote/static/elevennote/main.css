@@ -110,6 +110,10 @@ ul#notes li:hover {
 ul#notes li:hover .note-title {
   color: white;
 }
+ul#notes li:hover a {
+  color: white;
+  text-decoration: underline;
+}
 ul#notes li .note-title {
   color: black;
   font-family: Merriweather;
