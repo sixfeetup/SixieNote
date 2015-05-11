@@ -110,6 +110,10 @@ ul#notes li:hover {
 ul#notes li:hover .note-title {
   color: white;
 }
+ul#notes li:hover a {
+  color: white;
+  text-decoration: underline;
+}
 ul#notes li .note-title {
   color: black;
   font-family: Merriweather;
@@ -119,6 +123,16 @@ ul#notes li .note-title {
 ul#notes li .note-body {
   height: 54px;
   overflow: hidden;
+}
+ul#notes ul,
+ul#notes ol {
+    padding-left: 20px;
+}
+ul#notes ul li {
+    list-style: disc inside;
+}
+ul#notes ol li {
+    list-style: decimal inside;
 }
 
 input[type="text"],
