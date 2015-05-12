@@ -298,3 +298,9 @@ Chapter 22 - Changing passwords
 -------------------------
 
 On the profile page, add the ability to change the user's password.
+
+
+Chapter 23 - Settings info and debug toolbar
+------------------------
+
+Work with the settings file and try out the useful debug toolbar.
