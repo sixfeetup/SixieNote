@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'note',
     'django_wysiwyg',
     'tastypie',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
