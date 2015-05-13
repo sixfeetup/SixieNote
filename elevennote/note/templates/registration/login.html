@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="welcome" class="row"><div class="col-xs-12"><main>
+    
+    <h3>Sign In</h3>
+
+    {% if form.errors %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post" accept-charset="utf-8">
+        {% csrf_token %}
+        {% for field in form %}
+        <p>
+            <label>{{ field.label }}</label><br />
+            {% if field.errors %}
+    	<div class="alert alert-danger" role="alert">
+                {{ field.errors }}
+    	</div>
+            {% endif %}
+            {{ field }}
+        </p>
+        {% endfor %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <input class="btn btn-default" type="submit" value="Sign in"/>
+        <span class="login">Don't have an account? <a href="{% url 'register' %}">Sign up!</a></span>
+    </form>
+
+</main></div></div>
+
+{% endblock %}

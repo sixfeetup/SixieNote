@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+
+        <div class="col-xs-4">
+            <nav id="sidebar">
+
+              <div class="new-note">
+                <a href="{% url 'note:create' %}" class="new-note btn btn-default">+ New Note</a>
+              </div>
+
+              <ul id="notes">
+              {% if notes %}
+                  {% for note in notes %}
+                    <li data-url="{% url 'note:update' note.id %}">
+                        <div class="note-title">{{ note.title }}</div>
+                        <div class="note-body">{{ note.body | safe }}</div>
+                    </li>
+                  {% endfor %}
+                {% else %}
+                  <li>No notes are available.</li>
+              {% endif %}
+              </ul>
+            </nav>
+        </div>
+
+        <div class="col-xs-8">
+            <h3>User Profile</h3>
+
+            {% if form.non_field_errors %}
+              {% for error in form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                  <strong>{{ error|escape }}</strong>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+            <form action="{% url 'note:profile' %}" method="post" accept-charset="utf-8">
+              {% csrf_token %}
+
+              <dl>
+                <dt>Username</dt>
+                <dd>{{ user.username }}</dd>
+                
+                <dt>API Key</dt>
+                <dd>{{ api_key }}</dd>
+
+              {% for field in form %}
+	      <dt>{{ field.label_tag }}</dt>
+	      <dd>
+                {% if field.errors %}
+            	<div class="alert alert-danger" role="alert">
+                    {{ field.errors }}
+            	</div>
+                {% endif %}
+                {{ field }}
+              </dd>
+              {% endfor %}
+
+	    </dl>
+            <input class="btn btn-default" type="submit" value="Change Password"/>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
