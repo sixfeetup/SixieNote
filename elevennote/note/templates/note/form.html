@@ -3,6 +3,10 @@
 {% block extra_head %}
 {% load wysiwyg %}
 {% wysiwyg_setup %}
+
+    <script src="https://fb.me/react-0.13.3.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+
 {% endblock %}
 
 {% block content %}
@@ -16,18 +20,9 @@
                 <a href="{% url 'note:create' %}" class="new-note btn btn-default">+ New Note</a>
               </div>
 
-              {% if notes %}
-              <ul id="notes">
-                  {% for note in notes %}
-                    <li data-url="{% url 'note:update' note.id %}">
-                        <div class="note-title">{{ note.title }}</div>
-                        <div class="note-body">{{ note.body | safe }}</div>
-                    </li>
-                  {% endfor %}
-              </ul>
-              {% else %}
-                <p id="nonotes">No notes are available.</p>
-              {% endif %}
+	      <div id="notes">
+
+	      </div>
             </nav>
         </div>
 
@@ -81,5 +76,73 @@
     </div>
 
 {% wysiwyg_editor "id_body" %}
+
+    <script type="text/jsx">
+
+var NoteBox = React.createClass({
+  getInitialState: function() {
+    return {data: []};
+  },
+  componentDidMount: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        this.setState({data: data.objects});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  render: function() {
+    return (
+        <NoteList data={this.state.data} />
+    );
+  },
+  componentDidUpdate: function() {
+    $("#notes li").click(function(){
+        location.assign($(this).attr("data-url"));
+    });
+  }
+});
+
+var NoteList = React.createClass({
+  render: function() {
+    var noteNodes = this.props.data.map(function (note) {
+      return (
+        <Note title={note.title} id={note.id}>
+          {note.body}
+        </Note>
+      );
+    });
+    return (
+      <ul id="notes">
+	{noteNodes}
+      </ul>
+    );
+  }
+});
+
+var Note = React.createClass({
+  render: function() {
+    var rawBody = this.props.children.toString();
+    var editUrl = "/notes/" + this.props.id + "/";
+    return (
+      <li data-url={ editUrl }>
+	<div className="note-title">{ this.props.title }</div>
+        <div className="note-body" dangerouslySetInnerHTML={ {__html: rawBody} } />
+      </li>
+    );
+  }
+});
+
+React.render(
+  <NoteBox url="/api/v1/note/?format=json&username=a&api_key=6ccdcc9bcc6ef9a19db0ff6986dada63706fa2f1" />,
+  document.getElementById('notes')
+);
+
+    </script>
 
 {% endblock %}
