@@ -139,7 +139,7 @@ var Note = React.createClass({
 });
 
 React.render(
-  <NoteBox url="/api/v1/note/?format=json&username=a&api_key=6ccdcc9bcc6ef9a19db0ff6986dada63706fa2f1" />,
+  <NoteBox url="/api/v1/note/?format=json&username={{ request.user }}&api_key={{ apikey }}" />,
   document.getElementById('notes')
 );
 
