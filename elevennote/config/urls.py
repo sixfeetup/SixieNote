@@ -19,13 +19,9 @@ from django.contrib.auth import views as auth_views
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
 
-from tastypie.api import Api
 from note.api.resources import UserResource, NoteResource
 from note.auth_views import RegisterView
 
-v1_api = Api(api_name='v1')
-v1_api.register(UserResource())
-v1_api.register(NoteResource())
 
 urlpatterns = [
     # Handle the root url.
@@ -42,8 +38,8 @@ urlpatterns = [
 
     # Our app
     url(r'^notes/', include('note.urls', namespace="note")),
-    
-    # Our API
-    url(r'^api/', include(v1_api.urls)),
+
+    # ckeditor
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
 ]

@@ -1,2 +1,0 @@
-Django==1.8.1
-django-wysiwyg==0.7.0

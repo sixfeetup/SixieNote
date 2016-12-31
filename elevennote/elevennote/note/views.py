@@ -4,8 +4,6 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth import authenticate, login
 
-from tastypie.models import ApiKey
-
 from .models import Note
 from .mixins import LoginRequiredMixin, NoteMixin
 from .forms import NoteForm
@@ -57,19 +55,10 @@ class ProfileView(LoginRequiredMixin, NoteMixin, FormView):
     template_name = 'note/profile.html'
     form_class = SetPasswordForm
     success_url = reverse_lazy('note:index')
-    
+
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
-        
-        try:
-            api_key_obj = ApiKey.objects.get(user=self.request.user)
-            api_key = api_key_obj.key
-        except ApiKey.DoesNotExist:
-            api_key = None
 
-        context.update({
-            'api_key': api_key
-        })
         return context
 
     def get_form_kwargs(self):
@@ -79,7 +68,7 @@ class ProfileView(LoginRequiredMixin, NoteMixin, FormView):
         kwargs.update({
             'user': self.request.user,
         })
-        
+
         return kwargs
 
     def form_valid(self, form):

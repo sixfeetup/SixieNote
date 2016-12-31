@@ -1,0 +1,4 @@
+django-ckeditor==5.1.1
+django-environ==0.4.1
+django-model-utils==2.6
+Django==1.10.4
