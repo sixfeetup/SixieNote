@@ -13,14 +13,16 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
+from django.views import defaults as default_views
 
-from note.api.resources import UserResource, NoteResource
-from note.auth_views import RegisterView
+from elevennote.note.auth_views import RegisterView
 
 
 urlpatterns = [
@@ -28,7 +30,7 @@ urlpatterns = [
     url(r'^$', lambda r: HttpResponseRedirect('notes/')),
 
     # Admin
-    url(r'^admin/', include(admin.site.urls)),
+    url(settings.ADMIN_URL, admin.site.urls),
 
     # Registration
     url(r'^accounts/login/$', auth_views.login, name='login'),
@@ -37,9 +39,25 @@ urlpatterns = [
     url('^register/', RegisterView.as_view(), name='register'),
 
     # Our app
-    url(r'^notes/', include('note.urls', namespace="note")),
+    url(r'^notes/', include('elevennote.note.urls', namespace="note")),
 
     # ckeditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    # This allows the error pages to be debugged during development, just visit
+    # these url in browser to see how these error pages look like.
+    urlpatterns += [
+        url(r'^400/$', default_views.bad_request, kwargs={'exception': Exception('Bad Request!')}),
+        url(r'^403/$', default_views.permission_denied, kwargs={'exception': Exception('Permission Denied')}),
+        url(r'^404/$', default_views.page_not_found, kwargs={'exception': Exception('Page not Found')}),
+        url(r'^500/$', default_views.server_error),
+    ]
+    if 'debug_toolbar' in settings.INSTALLED_APPS:
+        import debug_toolbar
+
+        urlpatterns += [
+            url(r'^__debug__/', include(debug_toolbar.urls)),
+        ]

@@ -1,10 +1,5 @@
 {% extends "base.html" %}
 
-{% block extra_head %}
-{% load wysiwyg %}
-{% wysiwyg_setup %}
-{% endblock %}
-
 {% block content %}
 
     <div class="row">
@@ -79,7 +74,5 @@
 
         </div>
     </div>
-
-{% wysiwyg_editor "id_body" %}
 
 {% endblock %}
