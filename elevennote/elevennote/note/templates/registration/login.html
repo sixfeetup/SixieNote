@@ -3,7 +3,7 @@
 {% block content %}
 
 <div id="welcome" class="row"><div class="col-xs-12"><main>
-    
+
     <h3>Sign In</h3>
 
     {% if form.errors %}
@@ -20,9 +20,9 @@
         <p>
             <label>{{ field.label }}</label><br />
             {% if field.errors %}
-    	<div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" role="alert">
                 {{ field.errors }}
-    	</div>
+        </div>
             {% endif %}
             {{ field }}
         </p>

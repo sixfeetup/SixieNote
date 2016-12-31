@@ -46,20 +46,20 @@
               <dl>
                 <dt>Username</dt>
                 <dd>{{ user.username }}</dd>
-                
+
               {% for field in form %}
-	      <dt>{{ field.label_tag }}</dt>
-	      <dd>
+          <dt>{{ field.label_tag }}</dt>
+          <dd>
                 {% if field.errors %}
-            	<div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger" role="alert">
                     {{ field.errors }}
-            	</div>
+                </div>
                 {% endif %}
                 {{ field }}
               </dd>
               {% endfor %}
 
-	    </dl>
+        </dl>
             <input class="btn btn-default" type="submit" value="Change Password"/>
             </form>
 
