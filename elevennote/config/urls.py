@@ -18,9 +18,11 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
 from django.views import defaults as default_views
+from django.views.generic.base import RedirectView
 
 from elevennote.note.auth_views import RegisterView
 
@@ -28,6 +30,15 @@ from elevennote.note.auth_views import RegisterView
 urlpatterns = [
     # Handle the root url.
     url(r'^$', lambda r: HttpResponseRedirect('notes/')),
+
+    # Favicon
+    url(
+        r'^favicon.ico$',
+        RedirectView.as_view(
+            url=staticfiles_storage.url('favicon.ico'),
+            permanent=False),
+        name="favicon"
+    ),
 
     # Admin
     url(settings.ADMIN_URL, admin.site.urls),
