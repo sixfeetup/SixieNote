@@ -1,9 +1,15 @@
+from django.contrib.auth.models import User
 from django.views.generic import CreateView, UpdateView, DeleteView, FormView
 from django.utils import timezone
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth import authenticate, login
+from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
+from elevennote.note.serializers import NoteSerializer, UserSerializer
 from .models import Note
 from .mixins import LoginRequiredMixin, NoteMixin
 from .forms import NoteForm
@@ -82,3 +88,18 @@ class ProfileView(LoginRequiredMixin, NoteMixin, FormView):
         login(self.request, user)
 
         return super(ProfileView, self).form_valid(form)
+
+
+class NoteViewSet(viewsets.ReadOnlyModelViewSet):
+    """ List all of the notes for a user """
+    permission_classes = (IsAuthenticated,)
+    serializer_class = NoteSerializer
+
+    def get_queryset(self):
+        return Note.objects.filter(owner=self.request.user).order_by('-pub_date')
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

@@ -3,3 +3,4 @@ django-environ==0.4.1
 django-model-utils==2.6
 Django==1.10.4
 psycopg2==2.6.2
+djangorestframework

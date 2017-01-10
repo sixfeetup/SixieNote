@@ -38,6 +38,8 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'ckeditor',  # WYSIWYG editor
     'ckeditor_uploader',  # Editor Upload
+    'rest_framework', # API Framework
+    'rest_framework.authtoken', # API Token Auth
 )
 
 # Apps specific for this project go here.
@@ -247,3 +249,17 @@ CKEDITOR_CONFIGS = {
         ]
     }
 }
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+

@@ -23,9 +23,15 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy
 from django.views import defaults as default_views
 from django.views.generic.base import RedirectView
+from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
 
 from elevennote.note.auth_views import RegisterView
+from elevennote.note.views import NoteViewSet, UserViewSet
 
+router = routers.DefaultRouter()
+router.register(r'notes', NoteViewSet, 'Note')
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
     # Handle the root url.
@@ -54,6 +60,8 @@ urlpatterns = [
 
     # ckeditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^api/', include(router.urls)),
+    url(r'^api-token-auth/', obtain_auth_token),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

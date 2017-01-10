@@ -46,6 +46,8 @@
               <dl>
                 <dt>Username</dt>
                 <dd>{{ user.username }}</dd>
+                  <dt>API Token</dt>
+                  <dd>{{ user.auth_token }}</dd>
 
               {% for field in form %}
           <dt>{{ field.label_tag }}</dt>
