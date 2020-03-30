@@ -4,6 +4,7 @@ from datetime import timedelta
 # Django imports
 from django.conf import settings
 from django.db import models
+from django.db.models import CASCADE
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
@@ -16,7 +17,7 @@ from rest_framework.authtoken.models import Token
 
 
 class Note(models.Model):
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(User, on_delete=CASCADE)
     title = models.CharField(max_length=200)
     body = RichTextField()
     pub_date = models.DateTimeField('date published')

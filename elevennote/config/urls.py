@@ -17,10 +17,11 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LogoutView
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.views import defaults as default_views
 from django.views.generic.base import RedirectView
 from rest_framework import routers
@@ -50,8 +51,8 @@ urlpatterns = [
     url(settings.ADMIN_URL, admin.site.urls),
 
     # Registration
-    url(r'^accounts/login/$', auth_views.login, name='login'),
-    url(r'^accounts/logout/$', auth_views.logout, {"next_page" : reverse_lazy('login')}, name='logout'),
+    url(r'^accounts/login/$', LoginView.as_view(), name='login'),
+    url(r'^accounts/logout/$', LogoutView.as_view(), {"next_page" : reverse_lazy('login')}, name='logout'),
 
     url('^register/', RegisterView.as_view(), name='register'),
 

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.views.generic import CreateView, UpdateView, DeleteView, FormView
 from django.utils import timezone
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth import authenticate, login
 from rest_framework import viewsets

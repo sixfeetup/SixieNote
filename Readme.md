@@ -2,8 +2,8 @@ ElevenNote in Django
 ====================
 
 Uses:
-* Django 1.11
-* Python 3.7
+* Django 3.0
+* Python 3.8
 
 See the wiki (on github) for details on each chapter.  Below is just an
 overview.
