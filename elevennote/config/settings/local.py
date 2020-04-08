@@ -49,11 +49,12 @@ CACHES = {
 MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
 INSTALLED_APPS += ('debug_toolbar', )
 
-INTERNAL_IPS = ['127.0.0.1', ]
-# tricks to have debug toolbar when developing with docker
-if os.environ.get('USE_VAGRANT') == 'yes':
-    ip = socket.gethostbyname(socket.gethostname())
-    INTERNAL_IPS += [ip[:-1] + "1"]
+INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
+if env("USE_DOCKER") == "yes":
+    import socket
+
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS += [ip[:-1] + "1" for ip in ips]
 
 DEBUG_TOOLBAR_CONFIG = {
     'DISABLE_PANELS': [

@@ -14,14 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, path, include
 from django.views import defaults as default_views
 from django.views.generic.base import RedirectView
 from rest_framework import routers
@@ -79,5 +79,5 @@ if settings.DEBUG:
         import debug_toolbar
 
         urlpatterns += [
-            url(r'^__debug__/', include(debug_toolbar.urls)),
+            path('__debug__/', include(debug_toolbar.urls)),
         ]
