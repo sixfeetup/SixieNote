@@ -20,7 +20,7 @@ services:
       context: .
       args:
         DEVEL: 'yes'
-    image: elevennote_local_django
+    image: elevennote_local_django:dev
     command: python manage.py runserver_plus 0.0.0.0:8000
     volumes:
       - './elevennote:/opt/elevennote:z'
@@ -40,7 +40,7 @@ services:
       context: .
       args:
         DEVEL: 'yes'
-    image: elevennote_local_django
+    image: elevennote_local_django:dev
     command: python manage.py migrate
     volumes:
       - './elevennote:/opt/elevennote:z'

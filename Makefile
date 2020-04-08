@@ -6,6 +6,9 @@ build: Dockerfile ## create the build and runtime images
 build-dev: Dockerfile ## create the dev build and runtime images
 	@docker build --build-arg DEVEL=yes -t elevennote_local_django:dev .
 
+outdated: ## Show outdated packages in the container
+	@docker run --rm elevennote_local_django:latest pip list --outdated
+
 compile: requirements/main.in ## compile latest requirements to be built into the docker image
 	@docker run -v $(shell pwd)/requirements:/local elevennote_local_django:dev -m piptools compile --no-annotate --no-header --allow-unsafe --generate-hashes --output-file /local/main.txt /tmp/requirements/main.in
 
