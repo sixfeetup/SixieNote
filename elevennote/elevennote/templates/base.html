@@ -15,11 +15,10 @@
     <!-- Your stuff: Third-party CSS libraries go here -->
     <link rel="stylesheet" type="text/css" media="screen"
           href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic|Oxygen:400,300,700" />
-    
+
     <!-- This file stores project-specific CSS -->
     <link href="{% static 'elevennote/main.css' %}" rel="stylesheet">
     <link rel="icon" href="{% static 'favicon.ico' %}">
-
     {% endblock %}
     {% block extra_head %}{% endblock %}
   </head>
@@ -36,7 +35,7 @@
                         {% if user.is_authenticated %}
                             <div class="user-links">
                                 Signed in as {{ user.username }}.
-                                <a href="{% url 'note:profile' %}">Profile</a> | 
+                                <a href="{% url 'note:profile' %}">Profile</a> |
                                 <a href="{% url 'logout' %}">Logout</a>
                             </div>
                         {% endif %}

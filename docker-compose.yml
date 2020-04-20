@@ -12,8 +12,6 @@ services:
       - 'local_postgres_data_backups:/backups'
     env_file:
       - local/environment
-    ports:
-      - '5433:5432'
 
   django:
     build:
@@ -32,8 +30,6 @@ services:
     links:
       - db
       - mailhog
-    ports:
-      - '8000:8000'
 
   migrate:
     build:
@@ -50,8 +46,24 @@ services:
       - db
     links:
       - db
-
+  front-end:
+    image: 'node:13-buster-slim'
+    user: node
+    working_dir: /opt/project
+    environment:
+      - BROWSER=none
+    command: npm start
+    volumes:
+      - './front-end:/opt/project:z'
+    depends_on:
+      - front-end-install
+    stdin_open: true
+  front-end-install:
+    image: 'node:13-buster-slim'
+    user: node
+    working_dir: /opt/project
+    volumes:
+      - './front-end:/opt/project:z'
+    command: npm install
   mailhog:
     image: 'mailhog/mailhog:v1.0.0'
-    ports:
-      - '8025:8025'
