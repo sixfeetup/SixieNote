@@ -7,7 +7,7 @@
 
     <div class="row">
 
-        <div class="col-xs-4">
+        <div class="col-4">
             <nav id="sidebar">
 
               <div class="new-note">
@@ -29,7 +29,7 @@
             </nav>
         </div>
 
-        <div class="col-xs-8">
+        <div class="col-8">
 
         {% if form.errors %}
             {% for error in form.non_field_errors %}
@@ -60,17 +60,17 @@
             <input type="hidden" name="next" value="{{ next }}" />
 
         {% if object %}
-            <input class="btn btn-default" type="submit" value="Update Note"/>
+            <input class="btn btn-primary" type="submit" value="Update Note"/>
         {% else %}
-            <input class="btn btn-default" type="submit" value="Create Note"/>
+            <input class="btn btn-primary" type="submit" value="Create Note"/>
         {% endif %}
         </form>
 
     {% if object %}
       <form action="{% url 'note:delete' object.pk %}" method="post" id="delete-note-form">
             {% csrf_token %}
-            <a class="btn btn-default" id="delete-note">
-          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <a class="btn btn-danger" id="delete-note">
+          <span class="fas fa-trash fa-inverse" aria-hidden="true"></span>
         </a>
       </form>
     {% endif %}
