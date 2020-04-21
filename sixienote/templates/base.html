@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Elevennote</title>
+    <title>Sixienote</title>
 
     {% block css %}
     <!-- Latest compiled and minified Bootstrap 4 -->
@@ -15,7 +15,7 @@
           href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic|Oxygen:400,300,700" />
     
     <!-- This file stores project-specific CSS -->
-    <link href="{% static 'elevennote/main.css' %}" rel="stylesheet">
+    <link href="{% static 'sixienote/main.css' %}" rel="stylesheet">
     <link rel="icon" href="{% static 'favicon.ico' %}">
 
     {% endblock %}
@@ -29,7 +29,7 @@
                 <header>
                     <div class="well">
                         <a href="/">
-                        ElevenNote
+                        SixieNote
                         </a>
                         {% if user.is_authenticated %}
                             <div class="user-links">
@@ -55,7 +55,7 @@
     <!-- Your stuff: Third-party javascript libraries go here -->
 
     <!-- place project specific Javascript in this file -->
-    <script src="{% static 'elevennote/main.js' %}"></script>
+    <script src="{% static 'sixienote/main.js' %}"></script>
 
     {% endblock javascript %}
   </body>

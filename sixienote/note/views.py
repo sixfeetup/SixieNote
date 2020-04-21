@@ -9,7 +9,7 @@ from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from elevennote.note.serializers import NoteSerializer, UserSerializer
+from sixienote.note.serializers import NoteSerializer, UserSerializer
 from .models import Note
 from .mixins import LoginRequiredMixin, NoteMixin
 from .forms import NoteForm

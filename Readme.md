@@ -1,4 +1,4 @@
-ElevenNote in Django 
+SixieNote in Django 
 ====================
 
 Uses:
@@ -14,7 +14,7 @@ Chapter 01 - Create the project
 Make the project:
 
 ```
-$ django-admin startproject elevennote
+$ django-admin startproject sixienote
 ```
 
 Create some initial tables:

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Django settings for elevennote project.
+Django settings for sixienote project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/dev/topics/settings/
@@ -12,8 +12,8 @@ from __future__ import absolute_import, unicode_literals
 
 import environ
 
-ROOT_DIR = environ.Path(__file__) - 3  # (elevennote/config/settings/common.py - 3 = elevennote/)
-APPS_DIR = ROOT_DIR.path('elevennote')
+ROOT_DIR = environ.Path(__file__) - 3  # (sixienote/config/settings/common.py - 3 = sixienote/)
+APPS_DIR = ROOT_DIR.path('sixienote')
 
 env = environ.Env()
 env.read_env()
@@ -44,7 +44,7 @@ THIRD_PARTY_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    'elevennote.note',
+    'sixienote.note',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

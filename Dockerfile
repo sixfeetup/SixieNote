@@ -14,7 +14,7 @@ RUN apt-get update \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /opt/elevennote
+WORKDIR /opt/project
 
 ARG DEVEL=no
 
@@ -29,5 +29,3 @@ RUN set -x \
     && pip --no-cache-dir --disable-pip-version-check \
             install -r /tmp/requirements/base.txt \
                     $(if [ "$DEVEL" = "yes" ]; then echo '-r /tmp/requirements/tests.txt'; fi)
-
-

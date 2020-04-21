@@ -1,4 +1,4 @@
-"""elevennote URL Configuration
+"""sixienote URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -27,8 +27,8 @@ from django.views.generic.base import RedirectView
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 
-from elevennote.note.auth_views import RegisterView
-from elevennote.note.views import NoteViewSet, UserViewSet
+from sixienote.note.auth_views import RegisterView
+from sixienote.note.views import NoteViewSet, UserViewSet
 
 router = routers.DefaultRouter()
 router.register(r'notes', NoteViewSet, 'Note')
@@ -57,7 +57,7 @@ urlpatterns = [
     url('^register/', RegisterView.as_view(), name='register'),
 
     # Our app
-    url(r'^notes/', include('elevennote.note.urls', namespace="note")),
+    url(r'^notes/', include('sixienote.note.urls', namespace="note")),
 
     # ckeditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),

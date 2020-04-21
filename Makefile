@@ -1,23 +1,23 @@
 TAG=latest
 
 build: Dockerfile ## create the build and runtime images
-	@docker build -t elevennote_local_django:$(TAG) .
+	@docker build -t sixienote_local_django:$(TAG) .
 
 build-dev: Dockerfile ## create the dev build and runtime images
-	@docker build --build-arg DEVEL=yes -t elevennote_local_django:dev .
+	@docker build --build-arg DEVEL=yes -t sixienote_local_django:dev .
 
 outdated: ## Show outdated packages in the container
-	@docker run --rm elevennote_local_django:latest pip list --outdated
+	@docker run --rm sixienote_local_django:latest pip list --outdated
 
 compile: requirements/main.in ## compile latest requirements to be built into the docker image
-	@docker run -v $(shell pwd)/requirements:/local elevennote_local_django:dev -m piptools compile --no-annotate --no-header --allow-unsafe --generate-hashes --output-file /local/main.txt /tmp/requirements/main.in
+	@docker run -v $(shell pwd)/requirements:/local sixienote_local_django:dev -m piptools compile --no-annotate --no-header --allow-unsafe --generate-hashes --output-file /local/main.txt /tmp/requirements/main.in
 
 destroy-data: ## Remove the database volumes to start fresh
-	@docker volume rm elevennote_local_postgres_data
-	@docker volume rm elevennote_local_postgres_data_backups
+	@docker volume rm sixienote_local_postgres_data
+	@docker volume rm sixienote_local_postgres_data_backups
 
 clean: ## remove the latest build
-	@docker rmi -f elevennote_local_django:$(TAG)
+	@docker rmi -f sixienote_local_django:$(TAG)
 
 squeaky-clean:  clean  ## aggressively remove unused images
 	@docker rmi python:3.8-slim

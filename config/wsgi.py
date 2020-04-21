@@ -1,5 +1,5 @@
 """
-WSGI config for elevennote project.
+WSGI config for sixienote project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
