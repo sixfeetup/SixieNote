@@ -291,3 +291,4 @@ purposely/media/
 dump.rdb
 
 logfile
+docker-compose.override.yml
