@@ -61,6 +61,8 @@ urlpatterns = [
 
     # ckeditor
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+
+    # DRF API
     url(r'^api/', include(router.urls)),
     url(r'^api-token-auth/', obtain_auth_token),
 
