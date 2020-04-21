@@ -10,7 +10,10 @@ outdated: ## Show outdated packages in the container
 	@docker run --rm sixienote_local_django:latest pip list --outdated
 
 compile: requirements/main.in ## compile latest requirements to be built into the docker image
-	@docker run -v $(shell pwd)/requirements:/local sixienote_local_django:dev -m piptools compile --no-annotate --no-header --allow-unsafe --generate-hashes --output-file /local/main.txt /tmp/requirements/main.in
+	@docker run --rm -v $(shell pwd)/requirements:/local sixienote_local_django:dev python -m piptools compile --upgrade --no-annotate --no-header --allow-unsafe --generate-hashes --output-file /local/deploy.txt /tmp/requirements/deploy.in > /dev/null
+	@docker run --rm -v $(shell pwd)/requirements:/local sixienote_local_django:dev python -m piptools compile --upgrade --no-annotate --no-header --allow-unsafe --generate-hashes --output-file /local/main.txt /tmp/requirements/main.in > /dev/null
+	@docker run --rm -v $(shell pwd)/requirements:/local sixienote_local_django:dev python -m piptools compile --upgrade --no-annotate --no-header --allow-unsafe --generate-hashes --output-file /local/tests.txt /tmp/requirements/tests.in > /dev/null
+	@docker run --rm -v $(shell pwd)/requirements:/local sixienote_local_django:dev python -m pip check
 
 destroy-data: ## Remove the database volumes to start fresh
 	@docker volume rm sixienote_local_postgres_data

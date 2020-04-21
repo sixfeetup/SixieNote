@@ -23,9 +23,9 @@ RUN pip --no-cache-dir --disable-pip-version-check install --upgrade pip setupto
 COPY requirements /tmp/requirements
 
 RUN set -x \
-    && if [ "$DEVEL" = "yes" ]; then pip --no-cache-dir --disable-pip-version-check install -r /tmp/requirements/local.txt; fi
+    && if [ "$DEVEL" = "yes" ]; then pip --no-cache-dir --disable-pip-version-check install -r /tmp/requirements/dev.txt; fi
 
 RUN set -x \
     && pip --no-cache-dir --disable-pip-version-check \
-            install -r /tmp/requirements/base.txt \
+            install -r /tmp/requirements/main.txt \
                     $(if [ "$DEVEL" = "yes" ]; then echo '-r /tmp/requirements/tests.txt'; fi)

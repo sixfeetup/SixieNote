@@ -1,0 +1,6 @@
+coverage
+django-coverage-plugin
+django-test-plus
+factory_boy
+pytest-django
+pytest-sugar
