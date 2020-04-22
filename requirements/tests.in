@@ -1,3 +1,4 @@
+-c main.txt
 coverage
 django-coverage-plugin
 django-test-plus
