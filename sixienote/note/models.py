@@ -2,6 +2,8 @@
 from datetime import timedelta
 
 # Django imports
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 from django.conf import settings
 from django.db import models
 from django.db.models import CASCADE
@@ -30,15 +32,24 @@ class Note(models.Model):
     @transition(field=workflow_state, source='draft', target='published')
     def publish(self):
         # send notification to websocket
-        pass
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            "workflow", {"type": "workflow.update",
+                         "workflow_state": "published",
+                         "note_id": self.id})
 
     @transition(field=workflow_state, source='published', target='draft')
     def retract(self):
         # send notification to websocket
-        pass
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            "workflow", {"type": "workflow.update",
+                         "workflow_state": "draft",
+                         "note_id": self.id})
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
