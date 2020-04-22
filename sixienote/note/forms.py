@@ -6,4 +6,4 @@ class NoteForm(forms.ModelForm):
 
     class Meta:
         model = Note
-        exclude = ['owner', 'pub_date']
+        exclude = ['owner', 'pub_date', 'workflow_state']
