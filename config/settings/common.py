@@ -36,6 +36,7 @@ DJANGO_APPS = (
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
+    'channels',
     'ckeditor',  # WYSIWYG editor
     'ckeditor_uploader',  # Editor Upload
     'rest_framework', # API Framework
@@ -217,6 +218,7 @@ ROOT_URLCONF = 'config.urls'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = 'config.wsgi.application'
+ASGI_APPLICATION = "config.routing.application"
 
 
 # PASSWORD VALIDATION
@@ -287,3 +289,10 @@ REST_FRAMEWORK = {
     )
 }
 
+# Channels
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {"hosts": [("redis", 6379)]},
+    }
+}

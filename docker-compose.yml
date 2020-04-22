@@ -29,9 +29,11 @@ services:
     depends_on:
       - migrate
       - mailhog
+      - redis
     links:
       - db
       - mailhog
+      - redis
     ports:
       - '8000:8000'
 
@@ -55,3 +57,6 @@ services:
     image: 'mailhog/mailhog:v1.0.0'
     ports:
       - '8025:8025'
+
+  redis:
+    image: redis:latest
