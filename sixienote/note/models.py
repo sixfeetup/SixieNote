@@ -10,7 +10,7 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
-
+from django_fsm import FSMField, transition
 
 # Create your models here.
 from rest_framework.authtoken.models import Token
@@ -21,10 +21,21 @@ class Note(models.Model):
     title = models.CharField(max_length=200)
     body = RichTextField()
     pub_date = models.DateTimeField('date published')
+    workflow_state = FSMField(default='draft')
 
     def was_published_recently(self):
         now = timezone.now()
         return now - timedelta(days=1) <= self.pub_date <= now
+
+    @transition(field=workflow_state, source='draft', target='published')
+    def publish(self):
+        # send notification to websocket
+        pass
+
+    @transition(field=workflow_state, source='published', target='draft')
+    def retract(self):
+        # send notification to websocket
+        pass
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

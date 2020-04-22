@@ -4,8 +4,11 @@ from django.utils import timezone
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth import authenticate, login
+from django_fsm import TransitionNotAllowed
 from rest_framework import viewsets
-from rest_framework.decorators import api_view
+from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError
+from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -90,13 +93,33 @@ class ProfileView(LoginRequiredMixin, NoteMixin, FormView):
         return super(ProfileView, self).form_valid(form)
 
 
-class NoteViewSet(viewsets.ReadOnlyModelViewSet):
+class NoteViewSet(viewsets.ModelViewSet):
     """ List all of the notes for a user """
     permission_classes = (IsAuthenticated,)
     serializer_class = NoteSerializer
 
     def get_queryset(self):
         return Note.objects.filter(owner=self.request.user).order_by('-pub_date')
+
+    @action(detail=True)
+    def publish(self, request, pk=None):
+        note = get_object_or_404(Note, pk=pk)
+        try:
+            note.publish()
+            note.save()
+        except TransitionNotAllowed as e:
+            raise ValidationError(e)
+        return Response({'status': 'published'})
+
+    @action(detail=True)
+    def retract(self, request, pk=None):
+        note = get_object_or_404(Note, pk=pk)
+        try:
+            note.retract()
+            note.save()
+        except TransitionNotAllowed as e:
+            raise ValidationError(e)
+        return Response({'status': 'retracted'})
 
 
 class UserViewSet(viewsets.ModelViewSet):
