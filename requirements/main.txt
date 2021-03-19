@@ -16,9 +16,9 @@ django-model-utils==4.0.0 \
 django==3.0.5 \
     --hash=sha256:642d8eceab321ca743ae71e0f985ff8fdca59f07aab3a9fb362c617d23e33a76 \
     --hash=sha256:d4666c2edefa38c5ede0ec1655424c56dc47ceb04b6d8d62a7eac09db89545c1
-djangorestframework==3.11.0 \
-    --hash=sha256:05809fc66e1c997fd9a32ea5730d9f4ba28b109b9da71fccfa5ff241201fd0a4 \
-    --hash=sha256:e782087823c47a26826ee5b6fa0c542968219263fb3976ec3c31edab23a4001f
+djangorestframework==3.11.2 \
+    --hash=sha256:5cc724dc4b076463497837269107e1995b1fbc917468d1b92d188fd1af9ea789 \
+    --hash=sha256:a5967b68a04e0d97d10f4df228e30f5a2d82ba63b9d03e1759f84993b7bf1b53
 psycopg2==2.8.5 \
     --hash=sha256:132efc7ee46a763e68a815f4d26223d9c679953cd190f1f218187cb60decf535 \
     --hash=sha256:2327bf42c1744a434ed8ed0bbaa9168cac7ee5a22a9001f6fc85c33b8a4a14b7 \
